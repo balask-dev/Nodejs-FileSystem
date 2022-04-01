@@ -3,23 +3,26 @@ const {writeFile, readdir} = require('fs');
 const app = express();
 app.use(express.json());
 
-
-app.get("/create", function (req, res) { //create txt file
+//creating a text file that contains timestamp details
+app.get("/create", function (req, res) { 
     var date = new Date();
     var timestamp = date.getHours() + "-" + date.getMinutes() + "-" + date.getSeconds();
     var fileName = date.toString();
     var txt = timestamp;
-    readdir("./file", (err, data) => {  //read directory
+    //read directory
+    readdir("./file", (err, data) => {  
       if (data.length > 5) {
           res.send("limit exceeded");
       } else {
-      writeFile(`./file/${fileName}.txt`, txt, (err,data) =>    // writeFile
+          // writeFile in txt 
+      writeFile(`./file/${fileName}.txt`, txt, (err,data) =>    
       console.log("done")
         );
         res.send(`created ${fileName}`); 
     }
     });
   });
+//read directory 
   app.get("/timestamp", function (req, res) {
     readdir("./file", (err, data) => {
         res.send(data);
