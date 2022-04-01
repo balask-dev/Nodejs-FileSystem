@@ -2,9 +2,7 @@ const express = require('express');
 const {writeFile, readdir} = require('fs');
 const app = express();
 app.use(express.json());
-dotenv.config();
 
-const PORT = process.env.PORT;
 
 app.get("/create", function (req, res) { //create txt file
     var date = new Date();
@@ -30,4 +28,4 @@ app.get("/create", function (req, res) { //create txt file
 app.get("/",(req,res)=>{  
     res.send("connected")
 })
-app.listen(PORT);
+app.listen(3000);
